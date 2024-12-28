@@ -10,10 +10,10 @@ class CalculatorApp:
         self.display = tk.Entry(self.root, width=35, borderwidth=5)
         self.display.grid(row=0, column=0, columnspan=4)
 
-        # Кнопки с операцией сложения
+        # Кнопки калькулятора
         buttons = [
             ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('+', 1, 3),
-            ('4', 2, 0), ('5', 2, 1), ('6', 2, 2),
+            ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('-', 2, 3),
             ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('0', 4, 0),
             ('C', 4, 1), ('=', 4, 2)
         ]
@@ -21,6 +21,8 @@ class CalculatorApp:
         for (text, row, col) in buttons:
             if text == "+":
                 button = tk.Button(self.root, text=text, padx=20, pady=20, command=self.addition)
+            elif text == "-":
+                button = tk.Button(self.root, text=text, padx=20, pady=20, command=self.subtraction)
             elif text == "=":
                 button = tk.Button(self.root, text=text, padx=20, pady=20, command=self.calculate)
             elif text == "C":
@@ -42,6 +44,11 @@ class CalculatorApp:
         current = self.display.get()
         self.display.delete(0, tk.END)
         self.display.insert(0, current + "+")
+
+    def subtraction(self):
+        current = self.display.get()
+        self.display.delete(0, tk.END)
+        self.display.insert(0, current + "-")
 
     def calculate(self):
         try:
